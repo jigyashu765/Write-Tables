@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title id="tabTitle">Write Table</title>
+</head>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+		
+	}
+
+	body{
+		background-color: black;
+		overflow: hidden;
+	}
+
+	.container{
+		width: 100%;
+		height: 100vh;
+		margin: 10px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	#number{
+		margin: 20px;
+		text-align: center;
+		width: 40%;
+		border: 0;
+		border-bottom: 2px solid #9b9b9b;
+		outline: 0;
+		font-size: 1.3rem;
+		color: #fff;
+		padding: 7px 0;
+		background: transparent;
+	}
+
+	/* Chrome, Safari, Edge, Opera */
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+	}
+
+	#heading{
+		margin: 20px;
+		font-size: 30px;
+		color: #226ee7; 
+		background-image: -webkit-linear-gradient(90deg, #226ee7 23%, #24bec6 34%); 
+		background-clip: text; 
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	#table{
+		text-align: center;
+		margin: 10px;
+		font-size: 25px;
+		color: white;
+	}
+
+	#clearBtn{
+		margin: 30px;
+	}
+
+	button {
+	align-items: center;
+	background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
+	border: 0;
+	border-radius: 6px;
+	color: #fff;
+	cursor: pointer;
+	font-family: "JetBrains Mono",monospace;
+	height: 48px;
+	line-height: 1;
+	padding: 0 16px;
+	font-size: 22px;
+	}
+
+	button:hover {
+	box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+	transform: translateY(-2.5px);
+	}
+</style>
+<body>
+	<div class="container">
+		<input type="number" id="number" placeholder="Enter Your Number Here..." autofocus>
+		<button onclick="generateTable()">Generate Table</button>
+		<h1 id="heading"></h1>
+		<table id="table"></table>
+		<button id="clearBtn" onclick="clearAll()" style="display: none;">Clear</button>
+		<!-- btn print, btn reverse, btn copy, -->
+	</div>
+</body>
+<script>
+	var tabTitle = document.getElementById("tabTitle");
+	var heading = document.getElementById("heading");
+	var table = document.getElementById("table");
+	var clearBtn = document.getElementById("clearBtn");
+	var input = document.getElementById("number");
+
+	window.onload = function() {
+		addEventListener("keydown", function(event) {
+			// keyCode of Enter Key is "13"
+			if (event.keyCode === 13) {
+				generateTable();
+				
+			// keyCode of Delete Key is "46"
+			} else if(event.keyCode === 46){
+				clearAll();
+			}
+		});
+	};
+
+	function NotChange() {
+		tabTitle.innerHTML ="Write Table";
+		clearBtn.style = "display: none;";
+	}
+	
+	function generateTable() {
+		var number = document.getElementById("number").value;
+
+		tabTitle.innerHTML ="Write Table of " + number;
+		heading.innerHTML = "Table of " + number;
+		table.innerHTML = "";
+
+		if (number === '') {
+			NotChange();
+			heading.innerHTML = "Aray Number to Dalo...";
+		} else if (number == 0) {
+			NotChange();
+			heading.innerHTML = "Aray 0 Ka Table M Sab Zero Hota Hai...";
+		} else if (number <= 0) {
+			NotChange();
+			heading.innerHTML = "Minus M Table Kon Tera Baap Padhega...";
+		} else{
+			for (var i = 1; i <= 10; i++) {
+				var row = table.insertRow();
+				var cell = row.insertCell();
+				cell.innerHTML = number + " x " + i + " = " + (i * number);
+				clearBtn.style = "display: block;";
+			}
+		}	
+		input.focus();
+	}
+
+	function clearAll() {
+		NotChange();
+		number.value = "";
+		heading.innerHTML="";
+		table.innerHTML = "";
+		input.focus();
+	}
+</script>
+</html>
