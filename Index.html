@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title id="tabTitle">Write Table</title>
+	<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+	<div class="container">
+		<input type="number" id="number" placeholder="Enter Your Number Here..." autofocus>
+		<button onclick="generateTable()">Generate Table</button>
+		<div>
+			<h1 id="heading"></h1>
+			<table id="table"></table>
+		</div>
+		<div class="Allbtn">
+			<button id="reversBtn" onclick="reverseBtn()" style="display: none;">Reverse</button>
+			<button id="copyTableBtn" onclick="copyTableBtn()" style="display: none;">Copy</button>
+			<button id="printTableBtn" onclick="printTableBtn()" style="display: none;">Print</button>
+			<button id="clearBtn" onclick="clearAll()" style="display: none;">Clear</button>
+		</div>
+		<div class="alert-box" id="alert">
+			<div class="alert-content">
+			  <h3 id="AlertTitle"></h3>
+			  <p id="AlertMessage"></p>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="./scripts.js"></script>
+</html>
